@@ -3,6 +3,7 @@ python client for haipproxy
 """
 import time
 import threading
+from ..logger import client_logger
 
 from ..utils import get_redis_conn
 from ..config.rules import (
@@ -147,8 +148,7 @@ class ProxyFetcher(IPFetcherMixin):
     def get_proxies(self):
         # the older proxies will not be dropped
         proxies = self.get_available_proxies(self.conn)
-        # client_logger.info('{} proxies have been fetched'.format(len(proxies)))
-        print('{} proxies have been fetched'.format(len(proxies)))
+        client_logger.info('{} proxies have been fetched'.format(len(proxies)))
         self.pool.extend(proxies)
         return self.pool
 
