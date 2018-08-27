@@ -10,7 +10,7 @@ from ..exceptions import (
     HttpError, DownloadException
 )
 from ..config.settings import (
-    GFW_PROXY, USE_SENTRY)
+    GFW_PROXY, LOCAL_SQUID_PROXY, USE_SENTRY)
 from ..utils.err_trace import client
 from .user_agents import FakeChromeUA
 
@@ -32,7 +32,7 @@ class ProxyMiddleware(object):
             return
 
         if spider.proxy_mode == 1:
-            pass
+            request.meta['proxy'] = LOCAL_SQUID_PROXY
 
         if spider.proxy_mode == 2:
             if 'splash' in request.meta:
@@ -73,7 +73,8 @@ class ErrorTraceMiddleware(object):
             try:
                 raise exc
             except Exception:
-                message = 'error occurs when downloading {}'.format(request.url)
+                message = 'error occurs when downloading {}, with proxy mode {}: {}'.format(
+                    request.url, spider.proxy_mode, request.meta.get('proxy', False))
                 client.captureException(message=message)
         else:
             print(reason)

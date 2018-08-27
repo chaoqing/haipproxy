@@ -19,6 +19,7 @@ class BaseSpider:
          },
         'DOWNLOADER_MIDDLEWARES': {
             'haipproxy.crawler.middlewares.ErrorTraceMiddleware': 200,
+            'haipproxy.crawler.middlewares.ProxyMiddleware': 544,
         },
         'ITEM_PIPELINES': {
             'haipproxy.crawler.pipelines.ProxyIPPipeline': 200,

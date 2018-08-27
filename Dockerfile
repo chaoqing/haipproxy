@@ -39,5 +39,4 @@ RUN sed -i 's/http_access deny all/http_access allow all/g' /etc/squid/squid.con
     && cp /etc/squid/squid.conf /etc/squid/squid.conf.backup \
     && chmod +x run.sh
 
-ENTRYPOINT ["bash"]
-CMD ["./run.sh"]
+CMD ["bash", "./run.sh"]

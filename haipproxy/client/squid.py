@@ -22,8 +22,11 @@ __all__ = ['SquidClient']
 class SquidClient(IPFetcherMixin):
     default_conf_detail = "cache_peer {} parent {} 0 no-query weighted-round-robin weight=1 " \
                           "connect-fail-limit=2 allow-miss max-conn=5 name=proxy-{}"
-    other_confs = ['request_header_access Via deny all', 'request_header_access X-Forwarded-For deny all',
-                   'request_header_access From deny all', 'never_direct allow all']
+    other_confs = ['request_header_access Via deny all',
+                   'request_header_access X-Forwarded-For deny all',
+                   'request_header_access From deny all',
+                   #'never_direct allow all'
+                   ]
 
     def __init__(self, task, score_map=SCORE_MAPS,
                  ttl_map=TTL_MAPS, speed_map=SPEED_MAPS,

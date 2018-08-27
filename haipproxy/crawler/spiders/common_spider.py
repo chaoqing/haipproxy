@@ -10,6 +10,7 @@ from .base import BaseSpider
 # notice multi inheritance order in python
 class CommonSpider(BaseSpider, RedisSpider):
     name = 'common'
+    proxy_mode = 1
     task_queue = SPIDER_COMMON_TASK
 
     def __init__(self):

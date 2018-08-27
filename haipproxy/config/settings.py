@@ -22,6 +22,7 @@ CONCURRENT_REQUESTS = 30
 DUPEFILTER_CLASS = 'scrapy.dupefilters.BaseDupeFilter'
 HTTPCACHE_ENABLED = False
 GFW_PROXY = 'http://127.0.0.1:8123'
+LOCAL_SQUID_PROXY = 'http://127.0.0.1:3128'
 
 # splash settings.If you use docker-compose,SPLASH_URL = 'http://splash:8050'
 SPLASH_URL = 'http://127.0.0.1:8050'
@@ -35,7 +36,7 @@ UserAgentMiddleware = 'haipproxy.crawler.middlewares.UserAgentMiddleware'
 ProxyMiddleware = 'haipproxy.crawler.middlewares.ProxyMiddleware'
 DOWNLOADER_MIDDLEWARES = {
     UserAgentMiddleware: 543,
-    ProxyMiddleware: 543,
+    ProxyMiddleware: 544,
     'scrapy_splash.SplashCookiesMiddleware': 723,
     # it should be prior to HttpProxyMiddleware
     'scrapy_splash.SplashMiddleware': 725,
