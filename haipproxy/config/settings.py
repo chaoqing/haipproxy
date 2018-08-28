@@ -1,6 +1,7 @@
 """
 Settings for global.
 """
+import os
 #####################################################################
 # Scrapy settings of this project
 #####################################################################
@@ -28,7 +29,7 @@ LOCAL_SQUID_PROXY = 'http://127.0.0.1:3128'
 SPLASH_URL = 'http://127.0.0.1:8050'
 
 # extension settings
-RETRY_ENABLED = False
+RETRY_ENABLED = True
 TELNETCONSOLE_ENABLED = False
 
 
@@ -150,3 +151,10 @@ SENTRY_DSN = 'http://82c130028fa942f29add1e0aa0ff9cbd:cffa174304d248b9aa2bdb385d
 # you have to config prometheus first if you want to monitor haipproxy status
 EXPORTER_LISTEN_HOST = '0.0.0.0'
 EXPORTER_LISTEN_PORT = 7001
+
+#####################################################################
+# api basic access authentication
+#####################################################################
+API_AUTH_ENABLE = os.environ.get('API_AUTH_USER', False)
+API_AUTH_USER = os.environ.get('API_AUTH_USER')
+API_AUTH_PASSWORD = os.environ.get('API_AUTH_PASSWORD', API_AUTH_USER)

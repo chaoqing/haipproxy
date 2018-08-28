@@ -12,15 +12,18 @@ from ..exceptions import (
 from ..config.settings import (
     GFW_PROXY, LOCAL_SQUID_PROXY, USE_SENTRY)
 from ..utils.err_trace import client
-from .user_agents import FakeChromeUA
+from .user_agents import FakeBrowserUA
 
 
 class UserAgentMiddleware(object):
     """This middleware changes user agent randomly"""
 
     def process_request(self, request, spider):
-        request.headers['User-Agent'] = FakeChromeUA.get_ua()
-        request.headers['Accept-Language'] = 'zh-CN,zh;q=0.8,en;q=0.6'
+        request.headers['User-Agent'] = FakeBrowserUA.get_ua()
+        request.headers['Accept-Language'] = 'zh-CN,zh;q=0.8,en-US,en;q=0.5'
+        request.headers['Accept'] = 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'
+        request.headers['Connection'] = 'keep-alive'
+        request.headers['Accept-Encoding'] = 'gzip, deflate'
 
 
 class ProxyMiddleware(object):

@@ -24,8 +24,8 @@ __all__ = ['CRAWLER_TASKS', 'VALIDATOR_TASKS', 'CRAWLER_TASK_MAPS',
 CRAWLER_TASKS = [
     {
         'name': 'mogumiao.com',
-        'resource': ['http://www.mogumiao.com/proxy/free/listFreeIp',
-                     'http://www.mogumiao.com/proxy/api/freeIp?count=15'],
+        'resource': ['http://www.moguproxy.com/proxy/free/listFreeIp',
+                     'http://www.moguproxy.com/proxy/api/freeIp?count=15'],
         'task_queue': SPIDER_COMMON_TASK,
         'parse_type': 'json',
         'parse_rule': {
@@ -755,14 +755,14 @@ VALIDATOR_TASKS = [
         'task_queue': TEMP_WEIBO_QUEUE,
         'resource': VALIDATED_WEIBO_QUEUE,
         'interval': 5,
-        'enable': 1,
+        'enable': 0,
     },
     {
         'name': 'zhihu',
         'task_queue': TEMP_ZHIHU_QUEUE,
         'resource': VALIDATED_ZHIHU_QUEUE,
         'interval': 5,
-        'enable': 1,
+        'enable': 0,
     },
 ]
 
@@ -781,7 +781,7 @@ HTTP_TASKS = ['http']
 # target website that use https protocol
 HTTPS_TASKS = ['https', 'zhihu', 'weibo']
 
-# todo the three maps may be combined in one map
+# Todo: the three maps may be combined in one map
 # validator scheduler and clients will fetch proxies from the following queues
 SCORE_MAPS = {
     'http': VALIDATED_HTTP_QUEUE,
